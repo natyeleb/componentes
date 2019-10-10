@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 import NavBar from './Componentes/NavBar';
 import Home from './Componentes/Home';
-import Cadastro from './Componentes/Cadastro';
+import Cadastro from './Componentes/Cadastro/Cadastro';
 
 const  App = () => {
   return (

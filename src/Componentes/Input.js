@@ -1,6 +1,6 @@
 import React from 'react';
 
-import './Input.scss'
+import './Input.scss';
 
 const Input = ({ label, type, placeholder, value, atualizarState, obrigatorio }) => {
     const atualizar = (event) => {

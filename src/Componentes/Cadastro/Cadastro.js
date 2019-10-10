@@ -1,29 +1,53 @@
-import React , { useState} from "react"
-import Input from "./Input"
+import React , {useState, useEffect} from "react"
+import Input from "../Input"
 import "./Cadastro.scss"
-
-
+import Botao from "../Botao/Botao";
 
 const Cadastro = () => {
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [confirmEmail, setConfirmEmail] = useState("");
     const [senha, setSenha] = useState("");
+    const [id, setId] = useState(1);
 
+    const gerarPersonagem = () => {
+        if (id === 494) {
+          setId(1);
+        } else {
+          setId(id + 1)
+        }
+      }
+    
     const handleSubmit = e => {
         e.preventDefault();
+        
     };
+    useEffect(() => {
+        fetch(`https://rickandmortyapi.com/api/character/${id}`, {
+          method: "GET"
+        }).then(result => {
+          return result.json()
+        }).then(data => {
+          console.log(data)
+        }).catch(() => {
+          console.error("Erroooooooou, internet ruim ou você que é")
+        })
+      }, [id]) 
+    
+    
+
 
     return (
-        <div>
-            <h1>Faça seu cadastro</h1>
-        <form>
+    <div className="Cadastro">
+      <h1>Faça seu cadastro</h1>
+      <button onClick={gerarPersonagem}>Gerar personagem</button>
+      <form onSubmit={handleSubmit}>
             <Input
             value={nome}
             type="text"
             label="nome"
             placeholder="Nome completo"
-            atualizarstate={setNome}
+            atualizarState={setNome}
 
         />
          <Input
@@ -49,7 +73,7 @@ const Cadastro = () => {
             atualizarState={setSenha}
             
         />
-        <button>Cadastrar</button>
+        <Botao>Cadastrar</Botao>
       </form>
     </div>
   );
